@@ -1,0 +1,28 @@
+ <div class="dashboard-container">
+      <mat-card class="welcome-card">
+        <mat-card-header>
+          <mat-card-title>Dashboard</mat-card-title>
+          <mat-card-subtitle>Welcome to the Quiz Application</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>This is your quiz management dashboard. From here you can:</p>
+          <mat-list>
+            <mat-list-item>
+              <mat-icon matListItemIcon>quiz</mat-icon>
+              <div matListItemTitle>Take quizzes</div>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>create</mat-icon>
+              <div matListItemTitle>Create new quizzes</div>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>bar_chart</mat-icon>
+              <div matListItemTitle>View your results</div>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" [routerLink]="['/quiz']">Go to Quizzes</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
