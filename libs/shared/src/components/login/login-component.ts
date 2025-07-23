@@ -20,7 +20,8 @@ export class LoginComponent {
 
   r = inject(Router)
 
-  login() {
+  login(event: Event) {
+    event.preventDefault();
     this.r.navigate(['/dashboard']);
   }
 }
