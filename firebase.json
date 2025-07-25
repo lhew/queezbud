@@ -1,7 +1,7 @@
 {
   "apphosting": {
     "backendId": "queezbud-api",
-    "rootDir": "/",
+    "rootDir": "/dist/apps/my/browser",
     "ignore": [
       "node_modules",
       ".git",
