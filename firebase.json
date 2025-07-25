@@ -1,7 +1,7 @@
 {
   "apphosting": {
     "backendId": "queezbud-api",
-    "rootDir": "/dist/apps/my/browser",
+    "rootDir": "/",
     "ignore": [
       "node_modules",
       ".git",
@@ -11,7 +11,7 @@
     ]
   },
   "hosting": {
-    "public": "public",
+    "public": "dist/apps/my/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
