@@ -4,7 +4,7 @@
 
 # List of required Firebase config environment variables
 # List of required Firebase config environment variables (read from ENV)
-VARS=("API_KEY" "AUTH_DOMAIN" "PROJECT_ID" "STORAGE_BUCKET" "MESSAGING_SENDER_ID" "APP_ID")
+VARS=("API_KEY" "AUTH_DOMAIN" "PROJECT_ID" "STORAGE_BUCKET" "MESSAGING_SENDER_ID" "APP_ID", "MEASUREMENT_ID")
 
 # Start the TypeScript file
 echo "export const firebaseConfig = {"
