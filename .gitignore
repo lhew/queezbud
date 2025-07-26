@@ -37,7 +37,7 @@ build/
 *.tsbuildinfo
 
 # Firebase configuration
-app.firebase.ts
+app.firebase.config.ts
 
 # Misc
 .env.local
