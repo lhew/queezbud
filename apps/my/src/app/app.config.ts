@@ -7,7 +7,7 @@ import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { firebaseConfig } from './app.firebase';
+import { firebaseConfig } from './app.firebase.config';
 
 
 export const appConfig: ApplicationConfig = {
