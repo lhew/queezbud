@@ -1,21 +1,19 @@
 import { Route } from '@angular/router';
-import { DashboardComponent } from './features/dashboard/containers/dashboard-component/dashboard.component';
-import { QuizzComponent } from './features/quizz/quizz.component';
-import { LoginComponent } from './features/login/containers/login.component';
-
 
 export const appRoutes: Route[] = [
   {
     path: '',
-    component: LoginComponent
+    loadComponent: () =>
+      import('./features/login/containers/login.component').then(m => m.LoginComponent)
   },
   {
     path: 'quiz',
-    component: QuizzComponent
+    loadComponent: () =>
+      import('./features/quizz/quizz.component').then(m => m.QuizzComponent)
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    loadComponent: () =>
+      import('./features/dashboard/containers/dashboard-component/dashboard.component').then(m => m.DashboardComponent)
   }
-
 ];

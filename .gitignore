@@ -36,6 +36,9 @@ Thumbs.db
 build/
 *.tsbuildinfo
 
+# Firebase configuration
+app.firebase.ts
+
 # Misc
 .env.local
 .env.development.local

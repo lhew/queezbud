@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: |
+          ./scripts/firebaseconfig.sh API_KEY=${{ secrets.API_KEY }} AUTH_DOMAIN=${{ secrets.AUTH_DOMAIN }} PROJECT_ID=${{ secrets.PROJECT_ID }} STORAGE_BUCKET=${{ secrets.STORAGE_BUCKET }} MESSAGING_SENDER_ID=${{ secrets.MESSAGING_SENDER_ID }} APP_ID=${{ secrets.APP_ID }} MEASUREMENT_ID=${{ secrets.MEASUREMENT_ID }}"
       - run: npm ci --legacy-peer-deps && npx nx run my:build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
