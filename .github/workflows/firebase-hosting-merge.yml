@@ -9,6 +9,7 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    environment: queezbud_firestore_dev
     steps:
       - uses: actions/checkout@v4
       - run: ./scripts/firebaseconfig.sh >> ./apps/my/src/app/app.firebase.config.ts
@@ -21,6 +22,7 @@ jobs:
           APP_ID: ${{ secrets.APP_ID }}
           MEASUREMENT_ID: ${{ secrets.MEASUREMENT_ID }}
           
+
       - run: cat ./apps/my/src/app/app.firebase.config.ts
 
       - run: npm ci --legacy-peer-deps && npx nx run my:build
