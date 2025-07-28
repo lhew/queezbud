@@ -1,8 +1,12 @@
 
+@if(isLoading){
+    <div class="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-white">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+}
 
-@if(isLogin){<router-outlet></router-outlet>}
-@else {
 <app-main-layout>
     <router-outlet></router-outlet>
 </app-main-layout>
-}
+
+

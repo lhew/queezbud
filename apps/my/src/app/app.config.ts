@@ -8,6 +8,7 @@ import { appRoutes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { firebaseConfig } from './app.firebase.config';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 
 
 export const appConfig: ApplicationConfig = {
@@ -21,6 +22,7 @@ export const appConfig: ApplicationConfig = {
       appId: firebaseConfig.APP_ID,
       measurementId: firebaseConfig.MEASUREMENT_ID,
      })),
+         provideAuth(() => getAuth()),
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
