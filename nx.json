@@ -18,8 +18,15 @@
     "@nx/jest:jest": {
       "cache": true,
       "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"],
-      "options": { "passWithNoTests": true },
-      "configurations": { "ci": { "ci": true, "codeCoverage": true } }
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
     },
     "@nx/js:tsc": {
       "cache": true,
@@ -37,7 +44,12 @@
         "ciTargetName": "e2e-ci"
       }
     },
-    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
     {
       "plugin": "@nx/webpack/plugin",
       "options": {
@@ -56,7 +68,9 @@
       "style": "css",
       "unitTestRunner": "jest"
     },
-    "@nx/angular:component": { "style": "css" }
+    "@nx/angular:component": {
+      "style": "css"
+    }
   },
   "nxCloudId": "68825fbe6ad12d9fc51aa957"
 }

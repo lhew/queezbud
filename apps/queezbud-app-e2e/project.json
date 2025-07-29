@@ -1,0 +1,10 @@
+{
+  "name": "queezbud-app-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/queezbud-app-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["queezbud-app"],
+  "// targets": "to see all targets run: nx show project queezbud-app-e2e --web",
+  "targets": {}
+}
