@@ -9,6 +9,7 @@ entrypoint: node ./server/server.mjs
 automatic_scaling:
   # Optional: adjust as needed
   min_instances: 1
+  max_instances: 2
 
 handlers:
   - url: /.*
