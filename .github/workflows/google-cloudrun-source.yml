@@ -45,4 +45,4 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v2'
 
       - name: Deploy to Google App Engine
-        run: cd dist/apps/queezbud-app && gcloud app deploy
+        run: cd dist/apps/queezbud-app && ls -la && gcloud app deploy
