@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+      paths:
+        - 'apps/queezbud-app/**'
+        - 'gcp/app.yaml'
+
 jobs:
   deploy:
     runs-on: 'ubuntu-latest'
@@ -20,7 +24,7 @@ jobs:
       - name: Setup Node.js and npm
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
@@ -29,7 +33,7 @@ jobs:
         run: npx nx build queezbud-app
 
       - name: Copy app.yaml
-        run: cp apps/queezbud-app/app.yaml dist/apps/queezbud-app/app.yaml
+        run: cp gcp/app.yaml dist/apps/queezbud-app/app.yaml
 
       - name: Google Cloud Auth
         uses: 'google-github-actions/auth@v2'
@@ -41,4 +45,4 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v2'
 
       - name: Deploy to Google App Engine
-        run: gcloud app deploy distapp.yaml --quiet
+        run: cd dist/apps/queezbud-app && gcloud app deploy
