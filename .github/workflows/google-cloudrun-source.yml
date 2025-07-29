@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - main
-
-      paths:
-        - 'apps/queezbud-app/**'
-        - 'gcp/app.yaml'
+    paths:
+      - 'apps/queezbud-app/**'
+      - 'libs/**'
+      - 'gcp/app.yaml'
 
 jobs:
   deploy:
