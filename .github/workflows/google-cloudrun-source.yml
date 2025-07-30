@@ -8,6 +8,7 @@ on:
       - 'apps/queezbud-app/**'
       - 'libs/**'
       - 'gcp/app.yaml'
+      - .github/workflows/google-cloudrun-source.yml
 
 jobs:
   deploy:
@@ -46,12 +47,5 @@ jobs:
       - name: Set up Cloud SDK
         uses: 'google-github-actions/setup-gcloud@v2'
 
-      - name: Checking credentials of current service account
-        run: | 
-          gcloud projects get-iam-policy ${{ secrets.GCP_PROJECT_ID }} \
-            --flatten="bindings[].members" \
-            --filter="bindings.members:serviceAccount:queezbud-app@queezbud.iam.gserviceaccount.com" \
-            --format="value(bindings.role)"
-
-      # - name: Deploy to Google App Engine
-      #   run: gcloud app deploy dist/apps/queezbud-app
+      - name: Deploy to Google App Engine
+        run: gcloud app deploy dist/apps/queezbud-app
