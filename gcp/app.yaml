@@ -1,6 +1,5 @@
 runtime: nodejs22
 service: queezbud-app
-service_account: firebase-app-hosting-compute@queezbud.iam.gserviceaccount.com
 
 env_variables:
   NODE_ENV: production

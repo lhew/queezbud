@@ -1,0 +1,81 @@
+<form [formGroup]="form" class="mt-4 mb-4">
+  <input
+    id="quiz-title"
+    placeholder="Quiz Title here"
+    type="text"
+    class="block w-full max-w-xs mb-5 text-2xl"
+    ngClass="{'opacity-0' : isLoading}"
+    name="title"
+    formControlName="title"
+    (change)="updateQuizMetadata($event)"
+  />
+
+  <textarea
+    id="quiz-description"
+    placeholder="Enter quiz description"
+    formControlName="description"
+    class="block w-full max-w-xs resize-none"
+    ngClass="{'opacity-0' : isLoading}"
+    name="description"
+    (change)="updateQuizMetadata($event)"
+  ></textarea>
+
+  <div
+    class="grid grid-cols-1 gap-4 md:grid-cols-[16em_auto]"
+    ngClass="{'opacity-50' : !isLoading}"
+  >
+    <app-quiz-sidebar (createQuestion)="createQuestion()">
+      <pre class="text-white bg-black">
+      {{isIdle | json}}
+    </pre>
+      @for(question of quizService.getQuizData()?.questions; track question.id)
+      {
+      <app-quiz-question-preview
+        [question]="question"
+        [questionIndex]="$index"
+        (selectQuestion)="selectQuestion($index)"
+        (deleteQuestion)="deleteQuestion($index)"
+      ></app-quiz-question-preview>
+      }
+    </app-quiz-sidebar>
+
+    
+    @if(formAlternatives){
+
+    <div>
+
+      <input
+        type="text"
+        class="mb-4 text-2xl shadow card"
+        placeholder="Quiz Question Title"
+        formControlName="question"
+
+      />
+
+      <div
+        formArrayName="alternatives"
+        class="grid grid-cols-2 gap-4"
+
+      >
+        @if(quizService.getQuizData()?.questions?.length === 0) {
+        <p class="text-gray-500">No questions yet. Add some!</p>
+        } @else { @for (alternative of formAlternatives; track
+        alternative.value.id) {
+        <app-quiz-alternative
+          [alternative]="getAlternativeFormGroup($index)"
+          (deleteAlternative)="deleteAlternative($index)"
+        ></app-quiz-alternative>
+        } @if(formAlternatives.length < 4) {
+        <button
+          type="button"
+          class="h-32 btn btn-primary"
+          (click)="addAlternative()"
+        >
+          Add Alternative
+        </button>
+        } }
+      </div>
+    </div>
+    }
+  </div>
+</form>

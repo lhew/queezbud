@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import {LoginComponent as LoginRemoteComponent} from '@queezbud/shared/components/login/login-component';
 import { inject } from '@angular/core';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { FirebaseError } from '@angular/fire/app';
 import { UserService } from '@queezbud/shared/services/user/User.service';
-import { Router } from '@angular/router';
+import { LoginService } from '@queezbud/shared/services/login/Login.service';
 
 @Component({
   selector: 'app-quizz',
@@ -15,9 +13,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   
-  private auth = inject(Auth);
   private userService = inject(UserService)
-  private router = inject(Router);
+  private loginService = inject(LoginService)
   isLoading = false;
   errorMessage: string | null = null;
 
@@ -25,13 +22,31 @@ export class LoginComponent {
     this.errorMessage = null;
   }
 
+  ef = effect(() => {
+    const loginState = this.loginService.loginState;
+
+    if(loginState.data){
+      console.log('Login successful:', loginState.data);
+      this.userService.user = loginState.data;
+      // this.cookieService.setCookie('token', loginState.data.token);
+      // this.router.navigate(['/dashboard'])
+    }
+  })
+
   onLoginData(data: { email: string; password: string }) {
     this.errorMessage = null;
     this.isLoading = true;
 
-    signInWithEmailAndPassword(this.auth, data.email, data.password)
+
+    this.loginService.onLogin(data.email, data.password);
+
+   /* signInWithEmailAndPassword(this.auth, data.email, data.password)
       .then(userCredential => {
-        this.userService.user = userCredential.user;
+
+        const token = (userCredential.user as unknown as Record<string, string>)['accessToken'];
+
+        this.userService.user = userCredential.user as unknown as AuthUser;
+        this.cookieService.setCookie('token', token);
         this.router.navigate(['/dashboard'])
 
       })
@@ -51,5 +66,6 @@ export class LoginComponent {
       }).finally(() => {
         this.isLoading = false;
       });
+      */
   }
 }

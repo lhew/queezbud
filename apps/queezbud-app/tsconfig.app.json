@@ -4,7 +4,7 @@
     "outDir": "../../dist/out-tsc",
     "types": ["node"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/components/quiz-alternative/quizz-alternative..componentts", "../../libs/shared/src/types/Alternative.d.ts", "../../libs/shared/src/types/AuthUser.d.ts"],
   "exclude": [
     "jest.config.ts",
     "src/test-setup.ts",

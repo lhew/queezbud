@@ -1,0 +1,43 @@
+<div
+  class="relative flex flex-col items-center justify-between w-full gap-1 p-4 px-4 bg-gray-100 rounded-lg min-h-24 dark:bg-gray-700"
+>
+  <button (click)="onDeleteQuestion(questionIndex)" class="absolute text-gray-200 z-2 top-2 left-2 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" [attr.aria-label]="'Delete question ' + question.question">
+    <ng-icon name="iconoirTrash" style="width: 0.75em"></ng-icon>
+  </button>
+
+  <button
+    (click)="onSelectQuestion(questionIndex)"
+    class="absolute top-0 left-0 block w-full h-full text-lg font-semibold text-left rounded-lg hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+    [attr.aria-label]="'Select question ' + question.question"
+    [ngClass]="{'border-3 border-blue-500': question.current}"
+  ></button>
+
+  @if(question) {
+  <div class="flex flex-col gap-0.5 w-full mb-2">
+    <div
+      class="w-[80%] h-2 mx-auto  rounded"
+      [ngClass]="{'bg-red-400': question.question === '', 'bg-gray-400': question.question !== ''}"
+    ></div>
+
+    <div
+      class="w-[60%] h-2 mx-auto  rounded"
+      [ngClass]="{'bg-red-400': question.question === '', 'bg-gray-400': question.question !== ''}"
+    ></div>
+  </div>
+  }
+  <div
+    class="text-lg font-semibold text-center text-gray-800 dark:text-gray-200"
+  >
+    <div class="grid grid-cols-2 gap-2 mt-2">
+      @for(alternative of question.alternatives; track alternative.id;) {
+      <div
+        class="h-6 mx-auto rounded w-18"
+        [ngClass]="{
+                    'bg-gray-400': !alternative.isCorrect,
+                    'bg-green-200 dark:bg-green-700': alternative.isCorrect
+                }"
+      ></div>
+      }
+    </div>
+  </div>
+</div>

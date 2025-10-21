@@ -1,0 +1,10 @@
+<div class="relative items-center justify-center text-2xl shadow card min-h-32" [ngClass]="alternative.value.id === 'idle' || alternative.value.id === undefined ? 'hidden': 'flex' " [formGroup]="alternative">
+    <button type="button" class="absolute text-gray-500 left-3 top-3 hover:text-red-600" (click)="onDelete()">
+        <ng-icon name="iconoirTrash" style="width: 0.75em"></ng-icon>
+    </button>
+    <input id="quiz-alternative-{{alternative.value.id}}" type="text" class="text-center" (keypress)="onKeyPress($event)" placeholder="Quiz Alternative Title" formControlName="alternative" />
+    <div class="absolute flex text-xs right-2 top-2 group-hover:opacity-100 group">
+        <small class="transition-opacity opacity-0 group-hover:opacity-100">Is correct</small>
+        <input id="quiz-alternative-{{alternative.value.id}}-isCorrect" type="checkbox" class="ml-2" formControlName="isCorrect" />
+    </div>
+</div>

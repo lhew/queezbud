@@ -1,22 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { User } from 'firebase/auth';
-
+import { AuthUser } from '@queezbud/shared/types';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  private _user: User | null = null;
+  private _user = signal<AuthUser | null>(null);
 
-  set user(user: User | null) {
-    this._user = user;
+  set user(user: AuthUser | null) {
+    this._user.set(user);
   }
 
-  get user(): User | null {
-    return this._user;
+  get user(): AuthUser | null {
+    return this._user.asReadonly()() as AuthUser | null;
   }
 
   isValidUser(): boolean {
-    return this._user !== null && this._user.uid !== '';
+    return this.user !== null && this.user?.user_id !== '';
   }
 }

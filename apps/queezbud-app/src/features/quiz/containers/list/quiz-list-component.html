@@ -1,0 +1,107 @@
+<div>
+  <!-- {{quizService.getQuizData() | json}} -->
+  <div class="flex items-center mx-3 my-6 space-between">
+    <h2 class="text-3xl">Quizes</h2>
+    <div class="ml-auto">
+      <button (click)="openCreateQuizDialog()" class="btn btn-primary">
+        Create quiz
+      </button>
+    </div>
+  </div>
+  <table class="table w-full">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(quiz of quizListService.getQuizData().data; track quiz.id){
+      <tr>
+        <td class="w-[30%]">
+          <a [routerLink]="['../edit', quiz.id]"> {{ quiz.title }} </a>
+        </td>
+        <td class="w-[60%]">
+          <a [routerLink]="['../edit', quiz.id]"> {{ quiz.description }} </a>
+        </td>
+        <td class="w-[10%] text-right">
+          <button
+            aria-label="Delete Quiz"
+            (click)="openDeleteDialog(quiz.id, quiz.title)"
+          >
+            <ng-icon name="iconoirTrash"></ng-icon>
+          </button>
+        </td>
+      </tr>
+
+      }
+    </tbody>
+  </table>
+
+  <dialog id="my_modal_1" class="modal" #dialogRef>
+    <div class="modal-box">
+      @if(quizToDelete().id) {
+      <h3 class="text-lg font-bold">Delete quiz!</h3>
+      <p class="py-4">Are you sure you want to delete this quiz?</p>
+      <div class="w-full">
+        <form method="dialog">
+          <div class="modal-action">
+            <button
+              [disabled]="quizService.isLoading"
+              class="btn btn-primary"
+              type="button"
+              (click)="confirmDelete()"
+            >
+              Yes, delete it
+            </button>
+            <button
+              [disabled]="quizService.isLoading"
+              (click)="closeDialog()"
+              type="button"
+              class="btn"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+      }
+
+
+      @if(createQuizModal()){
+      <h3 class="text-lg font-bold">Create new quiz!</h3>
+      <p class="py-4">Press ESC key or click the button below to close</p>
+      <div class="w-full">
+        <form method="dialog">
+          <input
+            type="text"
+            placeholder="Quiz Title"
+            #titleInput
+            [disabled]="quizService.isLoading"
+            class="block w-full mb-2 input input-bordered"
+          />
+          <div class="modal-action">
+            <button
+              [disabled]="quizService.isLoading"
+              class="btn btn-primary"
+              type="submit"
+              (click)="createQuiz(titleInput, $event)"
+            >
+              Create Quiz
+            </button>
+            <button
+              [disabled]="quizService.isLoading"
+              (click)="closeDialog()"
+              type="button"
+              class="btn"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+      }
+    </div>
+  </dialog>
+</div>

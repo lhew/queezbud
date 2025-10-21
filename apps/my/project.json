@@ -12,6 +12,7 @@
       "options": {
         "outputPath": "dist/apps/my",
         "browser": "apps/my/src/main.ts",
+        "postcssConfig": "apps/my/.postcssrc.json",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/my/tsconfig.app.json",
         "assets": [

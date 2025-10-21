@@ -37,7 +37,9 @@ build/
 *.tsbuildinfo
 
 # Firebase configuration
+apps/queezbud-api/src/firebase
 app.firebase.config.ts
+service_account.ts
 
 # Misc
 .env.local
